@@ -3,6 +3,8 @@ package com.whq.mvc.controller;
 import com.github.pagehelper.PageInfo;
 import com.whq.mvc.common.BusinessException;
 import com.whq.mvc.common.CommonErrorCode;
+import com.whq.mvc.common.annotation.IgnoreRecordParameters;
+import com.whq.mvc.common.annotation.RecordParameters;
 import com.whq.mvc.entity.User;
 import com.whq.mvc.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 @Controller
 @RequestMapping(value = "/user")
+@RecordParameters(loglevel = RecordParameters.LogLevel.DEBUG,strategy = RecordParameters.Strategy.INPUT_OUTPUT)
 public class UserController {
 
     @Autowired
@@ -27,6 +30,7 @@ public class UserController {
         return userService.addUser(user);
     }
 
+    @IgnoreRecordParameters
     @ResponseBody
     @GetMapping("/getUser/{id}")
     public User getSingleUser(@PathVariable(value = "id") int id){
@@ -46,8 +50,7 @@ public class UserController {
 
 
     @RequestMapping("/getUserParam")
-    public String login(){
-        log.info("success");
-        return "login";
+    public void login(){
+        log.info("login no return");
     }
 }
