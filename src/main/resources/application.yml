@@ -25,6 +25,11 @@ spring:
             enable: true
             required: true
         auth: true
+  redis:
+    database: 0
+    host: 192.168.1.108
+    port: 6379
+    timeout: 1000
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.whq.mvc.entity
